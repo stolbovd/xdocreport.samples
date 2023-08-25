@@ -1,0 +1,17 @@
+{
+    "countries": [
+        {
+            "name": "Russia"
+        }, {
+            "name": "Ukraine"
+        }, {
+            "name": "Belorussia"
+        }
+    ],
+    "person": {
+        "name": "Катя",
+        "age": "23",
+        "cities": ["Surgut", "SaintPeterburg"]
+    },
+    "date": "1 января 2024"
+}

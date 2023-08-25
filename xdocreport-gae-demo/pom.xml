@@ -49,6 +49,7 @@
 		<dependency>
 			<artifactId>fr.opensagres.poi.xwpf.converter.pdf-gae</artifactId>
 			<groupId>fr.opensagres.xdocreport</groupId>
+			<version>2.0.3</version>
 		</dependency>
 
 		<dependency>
@@ -64,6 +65,7 @@
 		<dependency>
 			<artifactId>fr.opensagres.odfdom.converter.pdf-gae</artifactId>
 			<groupId>fr.opensagres.xdocreport</groupId>
+			<version>2.0.3</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>fr.opensagres.odfdom.converter.core</artifactId>
@@ -74,6 +76,7 @@
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>
 			<artifactId>fr.opensagres.poi.xwpf.converter.xhtml-gae</artifactId>
+			<version>2.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>

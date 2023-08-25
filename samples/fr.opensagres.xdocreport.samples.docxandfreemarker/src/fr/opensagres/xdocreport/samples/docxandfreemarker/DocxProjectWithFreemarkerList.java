@@ -173,8 +173,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.IXDocReport;
 import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
@@ -186,14 +189,13 @@ import fr.opensagres.xdocreport.template.formatter.FieldsMetadata;
 
 public class DocxProjectWithFreemarkerList
 {
-
     public static void main( String[] args )
     {
         try
         {
             // 1) Load Docx file by filling Freemarker template engine and cache
             // it to the registry
-            InputStream in = DocxProjectWithFreemarker.class.getResourceAsStream( "DocxProjectWithFreemarkerList.docx" );
+            InputStream in = DocxProjectWithFreemarker.class.getResourceAsStream( "/DocxProjectWithFreemarkerList1.docx" );
             IXDocReport report = XDocReportRegistry.getRegistry().loadReport( in, TemplateEngineKind.Freemarker );
 
             // 2) Create fields metadata to manage lazy loop ([#list Freemarker) for foot notes.
@@ -214,11 +216,25 @@ public class DocxProjectWithFreemarkerList
             List<Developer> developers = new ArrayList<Developer>();
             developers.add( new Developer( "ZERR", "Angelo", "angelo.zerr@gmail.com" ) );
             developers.add( new Developer( "Leclercq", "Pascal", "pascal.leclercq@gmail.com" ) );
-            context.put( "developers", developers );
+
+
+            String jsonString = "{\"countries\": [{\"name\": \"Russia\"}, {\"name\": \"Ukraine\"}, {\"name\": \"Belorussia\"}], \"person\": {\"name\": \"Катя\", \"age\": \"23\", \"cities\": [\"Surgut\", \"SaintPeterburg\"]}, \"date\": \"1 января 2024\"}";
+
+            ObjectMapper mapper = new ObjectMapper();
+            Map<String, Object> obj = mapper.readValue(jsonString, Map.class);
+            Map<String, String> myData = new HashMap<>();
+
+            myData.put("name", "Maria");
+            myData.put("age", "13");
+            context.put("myData", myData);
+            context.put("obj1", obj);
+            context.put("countries", obj.get("countries"));
+
+            context.put("developers", developers);
 
             // 4) Generate report by merging Java model with the Docx
-            OutputStream out = new FileOutputStream( new File( "DocxProjectWithFreemarkerList_Out.docx" ) );
-            report.process( context, out );
+            OutputStream out = new FileOutputStream(new File("DocxProjectWithFreemarkerList_Out.docx"));
+            report.process(context, out);
 
         }
         catch ( IOException e )
