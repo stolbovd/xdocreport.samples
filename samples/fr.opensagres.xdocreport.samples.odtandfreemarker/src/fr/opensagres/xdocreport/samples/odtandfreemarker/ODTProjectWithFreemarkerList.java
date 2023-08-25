@@ -195,7 +195,7 @@ public class ODTProjectWithFreemarkerList
             // 1) Load ODT file by filling Freemarker template engine and cache
             // it to the registry
             InputStream in =
-                ODTProjectWithFreemarkerList.class.getResourceAsStream( "ODTProjectWithFreemarkerList.odt" );
+                ODTProjectWithFreemarkerList.class.getResourceAsStream( "/ODTProjectWithFreemarkerList.odt" );
             IXDocReport report = XDocReportRegistry.getRegistry().loadReport( in, TemplateEngineKind.Freemarker );
 
             // 2) Create fields metadata to manage lazy loop ([#list Freemarker) for table row and manage dynamic image
@@ -212,6 +212,7 @@ public class ODTProjectWithFreemarkerList
             IContext context = report.createContext();
             Project project = new Project( "XDocReport" );
             context.put( "project", project );
+            context.put( "field", "Поле field" );
             // Register developers list
             List<Developer> developers = new ArrayList<Developer>();
             developers.add( new Developer( "ZERR", "Angelo", "angelo.zerr@gmail.com" ) );
@@ -221,7 +222,6 @@ public class ODTProjectWithFreemarkerList
             // 4) Generate report by merging Java model with the ODT
             OutputStream out = new FileOutputStream( new File( "ODTProjectWithFreemarkerList_Out.odt" ) );
             report.process( context, out );
-
         }
         catch ( IOException e )
         {

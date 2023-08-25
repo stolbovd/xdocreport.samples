@@ -4,5 +4,7 @@
 /target
 /.repository/
 /.idea/
-/samples/fr.opensagres.xdocreport.samples.docxandfreemarker/.idea/
+/**/.idea/
 /*.docx
+/*.odt
+/**/*.odt#

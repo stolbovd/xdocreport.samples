@@ -186,7 +186,7 @@ public class ConvertDocxStructuresToXHTML
         try
         {
             // 1) Load docx with POI XWPFDocument
-            XWPFDocument document = new XWPFDocument( Data.class.getResourceAsStream( "DocxStructures.docx" ) );
+            XWPFDocument document = new XWPFDocument( Data.class.getResourceAsStream( "/DocxStructures.docx" ) );
 
             // 2) Convert POI XWPFDocument 2 PDF with iText
             File outFile = new File( "target/DocxStructures.htm" );
